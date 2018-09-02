@@ -1,0 +1,112 @@
+<head>
+    <!--<style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .col  {
+            float: left;
+            width: 33.33%;
+            padding: 1px;
+        }
+
+        .col  {
+            float: right;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style> -->
+</head>
+<div *ngIf="searchIn && repOut">
+
+    <div class="row">
+        <div class="col ">
+            <div style="text-align:left">
+                <hr/>
+                <h1>{{searchIn.name}}</h1>
+                <hr/>
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <img src='{{searchIn.avatar_url}}' class='img-thumbnail' width='250px' height='250px' />
+                    <br/>
+                    <br/>
+                    <a class="btn btn-primary" target="_blank" href="{{searchIn.html_url}}" role="button">View Profile</a>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col">
+                                <button type="button" class="btn btn-outline-primary">
+                                        {{searchIn.followers}} followers</button>
+                        </div>
+                        <div class="col">
+                                <button type="button" class="btn btn-outline-secondary">
+                                        {{searchIn.following}} following</button>
+                        </div>
+
+                    </div>
+                        
+                            
+
+                </div>
+                <div class="col ">
+                    <table class="table table-dark">
+                        <tbody>
+                            <tr>
+                                <td>Username</td>
+                                <td>{{searchIn.login}}</td>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>{{searchIn.location}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{searchIn.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Blog</td>
+                                <td>{{searchIn.blog}}</td>
+                            </tr>
+                            <tr>
+                                <td>Member Since</td>
+                                <td>{{searchIn.created_at}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col ">
+                        <div>
+        
+                            <a *ngFor="let i of repOut" class="text-justify">
+                                <h6 font-size="5px">{{ i.name }}</h6>
+                            </a>
+                        </div>
+                </div>
+
+
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="col ">
+                        <img src='{{searchIn.avatar_url}}' class= 'img-thumbnail' width= '250px' height= '250px'/>
+                        <br>
+                        <button type='button' class='btn btn-outline-info'>
+                            <a href='{{searchIn.html_url}}'>View Profile</a></button>
+                </div>
+                <div class="col ">
+                    
+                </div> -->
