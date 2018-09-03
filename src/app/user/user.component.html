@@ -25,88 +25,72 @@
         }
     </style> -->
 </head>
-<div *ngIf="searchIn && repOut">
 
-    <div class="row">
-        <div class="col ">
-            <div style="text-align:left">
-                <hr/>
-                <h1>{{searchIn.name}}</h1>
-                <hr/>
+<h2 *ngIf="errorIn">Invalid Input</h2>
+
+<div *ngIf="searchIn && repOut && !errorIn">
+    
+    <div class="container">
+        <div class="row">
+            <!-- Card for User Personal Info -->
+            <div class="col">
+                    <div class="card">
+                            <div class="card-header">
+                                {{searchIn.name}}
+                            </div>
+                            <div class="card-body" class="row">
+                                <div class="col">
+                                    <!-- Profile Image -->
+                                    <img src='{{searchIn.avatar_url}}' class='img-thumbnail' width='250px' height='250px' />
+                                    <br/>
+                                    <br/>
+                                    <a class="btn btn-primary" target="_blank" href="{{searchIn.html_url}}" role="button">View Profile</a>
+                                    <br/>
+                                    <!-- Badges -->
+                                    <a class="badge badge-primary">{{searchIn.followers}} followers</a>
+                                    <a class="badge badge-secondary">{{searchIn.following}} following</a>
+                                    <a class="badge badge-success">{{searchIn.public_repos}} Public Repos</a>
+                                    <a class="badge badge-info">{{searchIn.public_gists}} Public Gists</a>
+                                </div>
+                                <div class="col">
+                                    <!-- List Group -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Username: {{searchIn.login}}</li>
+                                        <li class="list-group-item">Location: {{searchIn.location}}</li>
+                                        <li class="list-group-item">Email: {{searchIn.email}}</li>
+                                        <li class="list-group-item">Blog:
+                                            <br/>{{searchIn.blog}}</li>
+                                        <li class="list-group-item">Member Since:
+                                            <br/>{{searchIn.created_at}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    
+                        </div>
             </div>
-            <div class="row">
-                <div class="col ">
-                    <img src='{{searchIn.avatar_url}}' class='img-thumbnail' width='250px' height='250px' />
-                    <br/>
-                    <br/>
-                    <a class="btn btn-primary" target="_blank" href="{{searchIn.html_url}}" role="button">View Profile</a>
-                    <br/>
-                    <br/>
-                    <div class="row">
-                        <div class="col">
-                                <button type="button" class="btn btn-outline-primary">
-                                        {{searchIn.followers}} followers</button>
-                        </div>
-                        <div class="col">
-                                <button type="button" class="btn btn-outline-secondary">
-                                        {{searchIn.following}} following</button>
-                        </div>
-
+                <!-- card for repos -->
+            <div class="col">
+                <div class="card"   >
+                    <div class="card-header">
+                                Repos
                     </div>
-                        
-                            
-
+                    <ul *ngFor="let i of repOut" class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              {{i.name}}:<br/>
+                              {{i.description}} 
+                              <span class="badge badge-primary">{{ i.forks_count }} Forks</span>
+                              <span class="badge badge-success">{{ i.watchers_count }} Watchers</span>
+                            </li>
+                    </ul>
+                    <!-- <ul *ngFor="let i of repOut" class="list-group list-group-flush">
+                        <li class="list-group-item">{{ i.name }}: {{ i.description }}
+                            <a class="badge badge-success">{{ i.forks_count }} Forks</a>
+                            <a class="badge badge-info">{{ i.watchers_count }} Watchers</a>
+                        </li>
+                    </ul> -->
                 </div>
-                <div class="col ">
-                    <table class="table table-dark">
-                        <tbody>
-                            <tr>
-                                <td>Username</td>
-                                <td>{{searchIn.login}}</td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
-                                <td>{{searchIn.location}}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{{searchIn.email}}</td>
-                            </tr>
-                            <tr>
-                                <td>Blog</td>
-                                <td>{{searchIn.blog}}</td>
-                            </tr>
-                            <tr>
-                                <td>Member Since</td>
-                                <td>{{searchIn.created_at}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col ">
-                        <div>
-        
-                            <a *ngFor="let i of repOut" class="text-justify">
-                                <h6 font-size="5px">{{ i.name }}</h6>
-                            </a>
-                        </div>
-                </div>
-
-
             </div>
-            <hr/>
         </div>
     </div>
+
 </div>
-
-
-<!-- <div class="col ">
-                        <img src='{{searchIn.avatar_url}}' class= 'img-thumbnail' width= '250px' height= '250px'/>
-                        <br>
-                        <button type='button' class='btn btn-outline-info'>
-                            <a href='{{searchIn.html_url}}'>View Profile</a></button>
-                </div>
-                <div class="col ">
-                    
-                </div> -->

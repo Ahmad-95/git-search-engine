@@ -1,5 +1,7 @@
 <div id="search-component"  style="text-align:center">
 
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" (keyup)="showRepos(searchBox.value)" />
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" (keyup)="showRepos(searchBox.value)"/>
+  <br/>
+  <h2 *ngIf="!(searchBox.value)">Enter Any Username you want to search from Github DB!</h2>
     
 </div>

@@ -17,8 +17,8 @@
             Welcome to {{ title }}!
           </h1>
           <div>
-          <app-search (searchOut)="callThisFunction($event)" (rep)="callReposFunction($event)"></app-search>
-          <app-user [searchIn]="searchResult" [repOut]="reposResult"></app-user>
+          <app-search (searchOut)="callThisFunction($event)" (rep)="callReposFunction($event)" (isWrong)="callErrorFunction($event)" ></app-search>
+          <app-user [searchIn]="searchResult" [repOut]="reposResult" [errorIn]="errorResult" ></app-user>
           </div>
         
           </div>     

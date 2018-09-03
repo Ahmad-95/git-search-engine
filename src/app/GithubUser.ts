@@ -10,4 +10,6 @@ export interface GithubUser {
     created_at: string;
     followers: number;
     following: number;
+    public_repos: number;
+    public_gists: number;
 }

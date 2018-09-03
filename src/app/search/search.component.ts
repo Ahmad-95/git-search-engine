@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { 
-  debounceTime, distinctUntilChanged, switchMap 
+import {
+  debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -14,40 +14,54 @@ import { GithubRepo } from '../GithubRepos';
 })
 export class SearchComponent implements OnInit {
   @Output() searchOut = new EventEmitter<GithubUser>();
+  @Output() isWrong = new EventEmitter<boolean>();
   @Output() rep = new EventEmitter<GithubRepo[]>();
   constructor(private userService: UserService) { }
 
   // Push a search term into the observable stream.
-  search(term: string): any{
-    
+  search(term: string): any {
+
     this.userService.searchUsers(term)
-    .subscribe((x: GithubUser) => {
-     // console.log('xaxa', x);
-     // console.log('xaxa', x.avatar_url, x.id)
-      this.searchOut.emit(x);
-    },
-  err => {
-    //console.log('Invalid');
-  });
+      .subscribe((x: GithubUser) => {
+        this.searchOut.emit(x);
+        
+        this.isWrong.emit(false);
+      },
+      err => { 
+        this.isWrong.emit(true);
+   
+         // console.log("Ghalat",err);
 
-  
+        });
+
+
   }
 
-  showRepos(term: string): any{
+  showRepos(term: string): any {
     this.userService.Repos(term)
-    .subscribe((x: GithubRepo[]) => 
-    {
-      //console.log('REPO',x);
-      this.rep.emit(x);
-    },
-    
-  );
+      .subscribe((x: GithubRepo[]) => {
+        //console.log('REPO',x);
+         this.rep.emit(x);
+         
+         this.isWrong.emit(false);
+      },
+        err => {
+          
+          //console.log("Invalid Repo");
+          // this.rep.emit(err);
+          this.isWrong.emit(true);
+          
+          //console.log("Wrong Username",err)
+        }
+
+
+      );
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
-  
+
 
 }

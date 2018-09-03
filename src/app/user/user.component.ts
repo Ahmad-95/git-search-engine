@@ -13,13 +13,16 @@ import { GithubRepo } from '../GithubRepos';
 export class UserComponent implements OnInit {
   @Input() searchIn: GithubUser;
   @Input() repOut: GithubRepo[];
+  @Input() errorIn: boolean;
+ 
   constructor() { }
 
   ngOnInit() {
-    console.log("Ahmad");
-    console.log("Repos List", this.repOut)
+    // console.log("Error",this.errorIn);
+    // console.log("Ahmad");
+    // console.log("Repos List", this.repOut)
   }
-
+  
   
 
 }

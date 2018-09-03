@@ -4,6 +4,6 @@ export interface GithubRepo {
     description: string;
     html_url:string;
     watchers_count: number;
-    forks: number;
+    forks_count: number;
    
 }
